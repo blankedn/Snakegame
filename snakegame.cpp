@@ -21,6 +21,10 @@
 
 using namespace std;
 
+bool gameOver;
+enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN};
+eDirecton dir;
+
 void clear_screen(){
 
     #ifdef WINDOWS
@@ -30,6 +34,10 @@ void clear_screen(){
         system("clear");
 
     #endif
+}
+
+void main_menu(){
+
 }
 
 void draw_game(int width){
@@ -48,7 +56,7 @@ void draw_game(int width){
                 for (int i = 0; i < width; i++){
                     cout << " ";
                     if (i == width - 1){
-                        cout << "*";
+                        cout << "*";    // Height floor right
                     }
                 }
 
@@ -67,41 +75,37 @@ void draw_game(int width){
 void pressedkey(){
 
     char key_press;
-    int ascii_value;
-
-    cout<<"\n\t\t\tPress Any Key To Check Is It Pressed\n\n\t\t\t **Press ESC to EXIT**\n\n\n";
-
     bool control = true;
     while (control){
 
         key_press = getch();
-        ascii_value = int(key_press);
-        cout << "\t\t\t KEY Pressed (ASCII)->  " << ascii_value;
-        cout << endl;
-        cout << "\t\t\t KEY Pressed (CHAR)->  " << key_press;
-        cout << endl;
+        int ascii_value = int(key_press);
+
+        switch (key_press){
+
+        case 'a':
+            dir = LEFT;
+            break;
+        case 'd':
+            dir = RIGHT;
+            break;
+        case 'w':
+            dir = UP;
+            break;
+        case 's':
+            dir = DOWN;
+            break;
+        case 'x':
+            gameOver = true;
+            break;
+        }
     }
-}
-
-void turnLeft(){
-
-}
-
-void turnRight(){
-
-}
-
-void turnUp(){
-
-}
-
-void turnDown(){
-
 }
 
 int main(){
     
-   draw_game();
+   draw_game(50);
+   pressedkey();
 
 }
 
