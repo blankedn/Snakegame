@@ -9,8 +9,10 @@
  *  Visit our github page...   
  **********************************************/
 
-#include<iostream>
-#include<conio.h>
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+#include <time.h>
 
 #define GAME_SPEED 100000 // In microseconds
 #define GAMEOVER_TEXT1 "Game Over!"
@@ -18,6 +20,49 @@
 #define GAMESTART_TEXT "Press any key to begin"
 
 using namespace std;
+
+void clear_screen(){
+
+    #ifdef WINDOWS
+        system("cls");
+
+    #else
+        system("clear");
+
+    #endif
+}
+
+void draw_game(int width){
+
+    int height = width / 2;
+    
+    cout << "*";
+    for (size_t x = 0; x <= width; x++) { 
+        cout << "*";    // Up floor
+
+        if (x == width){
+            for (size_t y = 0; y <= height; y++){   
+                cout << endl;
+                cout << "*";    // Height floor left
+
+                for (int i = 0; i < width; i++){
+                    cout << " ";
+                    if (i == width - 1){
+                        cout << "*";
+                    }
+                }
+
+                if (y == height){
+                    cout << endl; 
+                    for (size_t x = 0; x <= width + 1; x++) {
+                        cout << "*"; // Down floor
+
+                    }
+                }
+            }
+        }
+    }
+}
 
 void pressedkey(){
 
@@ -38,8 +83,25 @@ void pressedkey(){
     }
 }
 
+void turnLeft(){
+
+}
+
+void turnRight(){
+
+}
+
+void turnUp(){
+
+}
+
+void turnDown(){
+
+}
+
 int main(){
     
-    pressedkey();
+   draw_game();
+
 }
 
